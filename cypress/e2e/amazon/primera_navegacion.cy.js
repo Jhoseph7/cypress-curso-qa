@@ -22,8 +22,7 @@ describe('Proyecto de Jhoseph navegacion', () => {
     cy.cerrarPopupSeguro()
 
     cy.log('Paso 4: validar el carrito')
-    cy.get('#nav-cart-count', { timeout: 10000 }).should('have.tex
-    t', '1')
+    cy.get('#nav-cart-count', { timeout: 10000 }).should('have.text', '1')
     cy.screenshot('TC-001-carrito-con-producto')
   })
 })
