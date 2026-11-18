@@ -2,15 +2,24 @@ const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
   e2e: {
+    baseUrl: "https://www.amazon.es",
+    watchForFileChanges: false,
+
+    // Ventana fija para que las capturas y los selectores sean consistentes
+    viewportWidth: 1366,
+    viewportHeight: 768,
+
+    // Tiempo máximo que Cypress reintenta cada comando antes de fallar
+    defaultCommandTimeout: 8000,
+
+    // Reintenta tests fallidos solo en ejecución por consola (cypress run)
+    retries: {
+      runMode: 2,
+      openMode: 0,
+    },
+
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
-    baseUrl: "https://www.amazon.es",
-    watchForFileChanges:false,
-    env: {
-      "URL_DEV": "https://development.app.com",
-      "VAR_ENV_CYPRESS_CONFIG_1": "SOY VAR ENV DE CYPRESS CONFIG",
-      "VAR_ENV_CYPRESS_CONFIG_2": "SOY VAR ENV DE CYPRESS CONFIG"
-    }
   },
 });
