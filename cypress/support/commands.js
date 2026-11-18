@@ -43,10 +43,11 @@ Cypress.Commands.add('abrirAmazon', () => {
   cy.aceptarCookies()
 })
 
-// Escribe en el buscador y lanza la búsqueda con Enter
+// Escribe en el buscador, lanza la búsqueda y espera a que carguen los resultados
 Cypress.Commands.add('buscarProducto', (texto) => {
   cy.get(sel.buscador).clear().type(`${texto}{enter}`)
-  cy.get(sel.enlaceProducto).should('have.length.greaterThan', 0)
+  cy.url().should('include', '/s?k=')
+  cy.get(sel.enlaceProducto).first().should('be.visible')
 })
 
 // Abre el primer resultado cuyo texto coincida con el patrón
